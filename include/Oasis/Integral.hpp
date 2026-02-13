@@ -19,6 +19,9 @@ public:
     Integral(const Integral<Expression, Expression>& other) = default;
 
     Integral(const Expression& integrand, const Expression& differential);
+    auto operator=(const Integral& integral) const -> Integral<Expression, Expression>;
+
+    auto IntegrateWithBounds(const Expression& variable, const Expression& lower, const Expression& upper) -> std::unique_ptr<Expression> override;
 
     [[deprecated]] [[nodiscard]] auto Simplify() const -> std::unique_ptr<Expression> final;
 
